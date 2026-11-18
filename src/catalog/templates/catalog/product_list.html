@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Catalog{% endblock %}
+
+{% block content %}
+<h1>Catalog</h1>
+
+{% if categories %}
+<p>Categories: {% for category in categories %}{{ category.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+{% endif %}
+
+{% if products %}
+<ul>
+  {% for product in products %}
+  <li>
+    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+    - ${{ product.price }}{% if product.category %} ({{ product.category.name }}){% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No products yet. Add some in the <a href="/admin/">admin</a>.</p>
+{% endif %}
+{% endblock %}

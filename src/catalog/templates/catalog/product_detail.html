@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ product.name }}</h1>
+<p>Price: ${{ product.price }}</p>
+{% if product.category %}<p>Category: {{ product.category.name }}</p>{% endif %}
+{% if product.description %}<p>{{ product.description|linebreaks }}</p>{% endif %}
+<p><a href="{% url 'catalog:product_list' %}">Back to catalog</a></p>
+{% endblock %}
